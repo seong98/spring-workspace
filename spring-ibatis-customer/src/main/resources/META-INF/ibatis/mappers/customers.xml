@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	
+<sqlMap>
+<!-- <select id="" parameterClass="map" resultClass="">
+	
+	 where 1=1
+	<dynamic>
+		<isEqual prepend="and" property="a" compareValue="no">
+			cu_no = #b#
+		</isEqual>
+		<isEqual property="a" compareValue="name">
+			cu_name = #b#		
+		</isEqual>
+	</dynamic>
+</select> -->
+	<select id="getAllCustomers" resultClass="kr.co.jhta.vo.Customer">
+		select 
+			customer_no as no, 
+			customer_name as name, 
+			customer_phone as phone
+		from tb_customers
+	</select>
+	<select id="getCustomerByNo" resultClass="kr.co.jhta.vo.Customer" parameterClass="int">
+		select 
+			customer_no as no, 
+			customer_name as name, 
+			customer_nickname as nickName,
+			customer_email as email,
+			customer_phone as phone,
+			customer_city as city,
+			customer_point as point,
+			customer_create_date as createDate
+		from tb_customers
+		where customer_no = #value#
+	</select>
+	
+	<insert id="insertCustomer" parameterClass="kr.co.jhta.vo.Customer">
+		insert into tb_customers
+			(customer_no, customer_name, customer_nickname, customer_phone, customer_email, customer_city, customer_point)
+		values
+			(customer_seq.nextval, #name#, #nickName#, #phone#, #email#, #city#, #point#)
+	</insert>
+	
+	<update id="updateCustomer" parameterClass="kr.co.jhta.vo.Customer">
+		update tb_customers
+		set 
+			customer_nickname = #nickName#, 
+			customer_phone = #phone#, 
+			customer_email = #email#,
+			customer_city = #city#,
+			customer_point = #point#
+		where 
+			customer_no = #no#
+	</update>
+	
+	<delete id="deleteCustomer" parameterClass="int">
+		delete from tb_customers
+		where customer_no = #value#
+	</delete>
+	
+	<select id="searchCustomerByOption" resultClass="kr.co.jhta.vo.Customer" parameterClass="map">
+		select 
+			customer_no as no, 
+			customer_name as name, 
+			customer_nickname as nickName,
+			customer_email as email,
+			customer_phone as phone,
+			customer_city as city,
+			customer_point as point,
+			customer_create_date as createDate
+		from 
+			tb_customers
+		where
+			1=1
+			<dynamic>
+				<isEqual property="sort" compareValue="번호">
+					and 
+						customer_no = #keyword#
+				</isEqual>
+				<isEqual property="sort" compareValue="이름">
+					and
+						customer_name = #keyword#
+				</isEqual>
+				<isEqual property="sort" compareValue="닉네임">
+					and
+						customer_nickname = #keyword#
+				</isEqual>
+			</dynamic>
+	</select>
+	
+</sqlMap>

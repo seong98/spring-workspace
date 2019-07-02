@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	
+<select id="getAllDepartments" resultClass="kr.co.jhta.vo.Department">
+	select 
+			department_id as deptId,
+			department_name as deptName,
+			manager_id as managerId,
+			location_id as locationId
+	from 
+		DEPARTMENTS
+</select>
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- <select id="getAllDepartments" resultClass="kr.co.jhta.vo.Department">
+		select 
+			department_id as deptId,
+			department_name as deptName,
+			manager_id as managerId,
+			location_id as locationId
+		from
+			departments			
+	</select> -->
+	
+	
+</sqlMap>

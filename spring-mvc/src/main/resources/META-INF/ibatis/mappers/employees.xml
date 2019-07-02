@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+		
+
+<select id="getEmployeebyDepartmentId" resultClass="kr.co.jhta.vo.Employee" parameterClass="int">
+	select
+		A.EMPLOYEE_ID empId,
+		A.FIRST_NAME firstName,
+		A.LAST_NAME lastName
+	from
+		EMPLOYEES A
+	where
+		A.DEPARTMENT_ID=#VALUE#
+</select>
+
+<select id="getEmployeebyEmployeeId" resultClass="kr.co.jhta.vo.Employee" parameterClass="int">
+select
+			employee_id as empId,
+			first_name as firstName,
+			last_name as lastName,
+			email as email,
+			phone_number as phone,
+			hire_date as hireDate,
+			job_id as jobId,
+			salary as salary,
+			commission_pct as commission,
+			manager_id as managerId,
+			department_id as deptId
+		from 
+			employees
+		where
+			employee_id = #value#
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <select id="getEmployeesByDept" resultClass="kr.co.jhta.vo.Employee" parameterClass="int">
+		select 
+			employee_id as empId,
+			first_name as firstName,
+			last_name as lastName,
+			department_id as deptId
+		from
+			employees
+		where
+			department_id = #value#
+	</select>      
+	 
+	<select id="getEmployeeByEmpId" resultClass="kr.co.jhta.vo.Employee">
+		select
+			employee_id as empId,
+			first_name as firstName,
+			last_name as lastName,
+			email as email,
+			phone_number as phone,
+			hire_date as hireDate,
+			job_id as jobId,
+			salary as salary,
+			commission_pct as commission,
+			manager_id as managerId,
+			department_id as deptId
+		from 
+			employees
+		where
+			employee_id = #value#
+	</select>
+	
+	<insert id="insertEmployee" parameterClass="kr.co.jhta.vo.Employee">
+		insert into employees
+		(employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, manager_id, department_id)
+		values
+		(employees_seq.nextval, #firstName#, #lastName#, #email#, #phone#, sysdate, 'IT_PROG', #salary#, 100, 60)
+	</insert>
+	
+	 -->
+</sqlMap>
